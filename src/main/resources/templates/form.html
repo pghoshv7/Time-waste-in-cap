@@ -1,0 +1,252 @@
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+<link rel="stylesheet" th:href="@{/css/form.css}"
+	href="../../css/form.css" />
+<link rel="stylesheet" th:href="@{/css/boot.css}"
+	href="../../css/boot.css" />
+<link rel="stylesheet" th:href="@{/css/img.css}"
+	href="../../css/img.css" />
+<header>
+	<div class="head_class">
+		<p>Migration Pattern Assessment Resource Estimation</p>
+		<img src="../../images/cg_logo.jpg" />
+	</div>
+</header>
+<style>
+.button:hover {
+	background-color: #0D5555;
+}
+</style>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript">
+	function submitMyForm() {
+		var round = Math.round;
+
+		document.getElementById("totalhrsapiids").value = parseInt(document
+				.getElementById("proxyids").value)
+				+ parseInt(document.getElementById("swaggerids").value)
+				+ parseInt(document.getElementById("operids").value);
+
+		document.getElementById("apiids").value = document
+				.getElementById("totalhrsapiids").value;
+
+		document.getElementById("totalhrsids").value = parseInt(document
+				.getElementById("apiids").value)
+				+ parseInt(document.getElementById("microservicesids").value)
+				+ parseInt(document.getElementById("ciids").value);
+
+		document.getElementById("totalpointsids").value = round((parseInt(document
+				.getElementById("totalhrsids").value)) / 6);
+
+		document.getElementById("sprintsids").value = round((parseInt(document
+				.getElementById("totalpointsids").value)) / 40);
+
+		document.getElementById("pointids").value = round((parseInt(document
+				.getElementById("hrids").value)) / 6);
+		return false;
+
+	}
+
+	function resetMyForm() {
+		document.getElementById('form1').reset();
+	}
+</script>
+<body>
+	<p>
+		<b><font face="verdana" color="green"> Properties marked
+				with <font color="red">*</font> are mandatory. Please ensure to fill
+				these parameters.
+		</font></b><br /><br /> <b>ALL THE FIELDS ARE IN HOURS.(hrs)</b>
+	</p>
+	<form id="form1">
+		<div class="span12">
+			<table id="myTableIdApiEst">
+				<thead>
+					<tr>
+						<th>API Estimation Breakup</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Resource Modeling (per API Proxy)<font color="red">*</font></td>
+						<td><input type="text" id="proxyids" name="proxyestimations"
+							value="24" /></td>
+					</tr>
+					<tr>
+						<td>Swagger Creation<font color="red">*</font></td>
+						<td><input type="text" id="swaggerids"
+							name="swaggerestimations" value="12" /></td>
+					</tr>
+					<tr>
+						<td>Proxy Creation<font color="red">*</font></td>
+						<td><input type="text" id="operids" name="operestimations"
+							value="48" /></td>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<td><input type="text" id="totalhrsapiids"
+							name="totalhrsapiestimations" disabled="true" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <br />
+			<table id="myTableId" dt:table="true">
+				<thead>
+					<tr>
+						<th>Usecase Estimates</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>API (from the API Estimation breakup)</td>
+						<td><input type="text" id="apiids" name="apiestimations"
+							disabled="true" /></td>
+					</tr>
+					<tr>
+						<td>Microservice (from GREAT)<font color="red">*</font></td>
+						<td bgcolor="F3FF33"><input type="text" id="microservicesids"
+							name="microservicesestimations" value="466" /></td>
+					</tr>
+					<tr>
+						<td>CI/CD/CT<font color="red">*</font></td>
+						<td bgcolor="33A2FF"><input type="text" id="ciids"
+							name="cisestimations" value="36" /></td>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<td><input type="text" id="totalhrsids"
+							name="totalhrsestimations" disabled="true" /></td>
+					</tr>
+					<tr>
+						<td>Total (Points) 1 pt = 6 hrs</td>
+						<td><input type="text" id="totalpointsids"
+							name="totalpointsestimations" disabled="true" /></td>
+					</tr>
+					<tr>
+						<td>No of Sprints</td>
+						<td><input type="text" id="sprintsids"
+							name="sprintsestimations" disabled="true" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <br />
+			<table id="myTableIdStatic">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Additional estimates to be considered</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Initial Set up of CI/CD/CT pipeline</td>
+						<td bgcolor="#FF0000"><input type="text" value="TBD"
+							disabled="true" /></td>
+					</tr>
+					<tr>
+						<td>Domain Driven Design activities (for Bounded Context
+							Identification)</td>
+						<td bgcolor="#FF0000"><input type="text" value="TBD"
+							disabled="true" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <br />
+			<!-- 
+			<table id="myTableIdStaticNote">
+				<thead>
+					<tr>
+						<th>Note</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>One Proxy can have multiple API Operations</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>Spring Cloud Gateway</td>
+					</tr>
+					<tr>
+						<td>Simple = Descriptive</td>
+					</tr>
+					<tr>
+						<td>Medium = Diagnostic</td>
+					</tr>
+					<tr>
+						<td>Complex = Prescriptive</td>
+					</tr>
+					<tr>
+						<td>Analysis, Design and Implementation</td>
+					</tr>
+					<tr>
+						<td>800 -> 1500 MS or 3000 MS</td>
+					</tr>
+					<tr>
+						<td>1 US -> >??? MS</td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <br />
+			<table id="myTableIdCalc" dt:table="true" class="show">
+				<thead>
+					<tr>
+						<th>Estimates for IoT Adapters (From GREAT)</th>
+						<th>Hrs</th>
+						<th>Point</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Simple (hrs) <font color="red">*</font></td>
+						<td><input type="text" id="hrids" name="hours" /></td>
+						<td><input type="text" id="pointids" name="points"
+							disabled="true" /></td>
+					</tr>
+					<tr>
+						<td>Medium (hrs) <font color="red">*</font></td>
+						<td><input type="text" id="hridm" name="hours" /></td>
+						<td><input type="text" id="pointidm" name="points"
+							disabled="true" /></td>
+					</tr>
+					<tr>
+						<td>Complex (hrs) <font color="red">*</font></td>
+						<td><input type="text" id="hridc" name="hours" /></td>
+						<td><input type="text" id="pointidc" name="points"
+							disabled="true" /></td>
+					</tr>
+				</tbody>
+			</table> -->
+		</div>
+	</form>
+
+	<table>
+		<tr>
+			<td>
+				<button class="button button2" type="submit"
+					onclick="submitMyForm()" value="Submit">Calculate
+					Estimation</button>
+				<button class="button button3" type="submit"
+					onclick="window.location = 'costestimation.html';" value="Submit">Proceed
+					for cost estimation</button>
+				<button class="button button3" type="reset" form="form1"
+					onclick="resetMyForm()" value="Reset">Reset</button>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

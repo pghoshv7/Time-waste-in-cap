@@ -1,0 +1,121 @@
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+<link rel="stylesheet" th:href="@{/css/form.css}"
+	href="../../css/form.css" />
+<link rel="stylesheet" th:href="@{/css/boot.css}"
+	href="../../css/boot.css" />
+<link rel="stylesheet" th:href="@{/css/img.css}"
+	href="../../css/img.css" />
+<header>
+	<div class="head_class">
+		<p>Migration Pattern Result</p>
+		<img src="../../images/cg_logo.jpg" />
+	</div>
+</header>
+<head>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/operation.js"></script>
+<script>
+	//<![CDATA[
+	function openCity(evt, cityName) {
+		// Declare all variables
+		var i, tabcontent, tablinks;
+
+		// Get all elements with class="tabcontent" and hide them
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+
+		// Get all elements with class="tablinks" and remove the class "active"
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className
+					.replace(" active", "");
+		}
+
+		// Show the current tab, and add an "active" class to the button that opened the tab
+		document.getElementById(cityName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+	// ]]>
+</script>
+</head>
+
+<body onload="myFunction()">
+	<p>The model best suited according to your choice of answers:</p>
+	<div id="MyEdit">changeable text..</div>
+	<br />
+	<p>
+		<b>For more information on the migration pattern please click on
+			any of the following tabs: </b>
+	</p>
+	<!-- Tab links -->
+	<div class="tab">
+		<button class="tablinks" onclick="openCity(event, 'Re-host')">Re-host</button>
+		<button class="tablinks" onclick="openCity(event, 'Re-platform')">Re-platform</button>
+		<button class="tablinks" onclick="openCity(event, 'Re-write')">Re-write</button>
+		<button class="tablinks" onclick="openCity(event, 'Co-exist')">Co-exist</button>
+	</div>
+
+	<!-- Tab content -->
+	<div id="Re-host" class="tabcontent">
+		<h3>Re-host</h3>
+		<p>
+			Rehosting: also known as lift-and-shift.<br /> Deploying the
+			application in cloud platform without applying any change in the
+			existing application.<br /> Its very fast and can be done both
+			manually or using automated tools.<br />
+		</p>
+	</div>
+
+	<div id="Re-platform" class="tabcontent">
+		<h3>Re-platform</h3>
+		<p>
+			Replatforming: This approach will require few configuration changes
+			or a few other cloud optimizations in order to achieve some tangible
+			benefits,<br /> but otherwise not changing the core architecture of
+			the application. Applications which are already hosted in cloud can
+			later be re-desingned easily.
+		</p>
+	</div>
+
+	<div id="Re-write" class="tabcontent">
+		<h3>Re-write</h3>
+		<p>
+			Rewrite: This approach requires the existing application to be
+			completely redesigned/re-architectured by applying micro-service based
+			architecture <br /> following best practices of cloud based
+			development. This approach is typically driven by a strong business
+			need to add features, scale, or performance <br /> that would be
+			difficult to achieve in the application’s existing environment.<br />
+			This pattern tends to be the most expensive, but it can also be the
+			most beneficial.
+		</p>
+	</div>
+	<div id="Co-exist" class="tabcontent">
+		<h3>Co-exist</h3>
+		<p>
+			Co-exist: This approach requires moving few of the existing
+			applications to cloud while keeping others in the local data center.
+			<br /> This approach best suited for Companies don't want to deploy
+			all of their applications to cloud because of various
+			reasons(Security, contracts etc..) or those who just started
+			their cloud migration journey.
+		</p>
+	</div>
+	<table>
+		<tr>
+			<td>
+				<button class="button button2"
+					onclick="window.location = 'form.html';" value="Submit">Take
+					me to Resource Estimation Page</button>
+				<button class="button button3" value="Back"
+					onclick="window.location = 'ques.html';">Back</button>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

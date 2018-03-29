@@ -1,0 +1,331 @@
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+<link rel="stylesheet" th:href="@{/css/form.css}"
+	href="../../css/form.css" />
+<link rel="stylesheet" th:href="@{/css/boot.css}"
+	href="../../css/boot.css" />
+<link rel="stylesheet" th:href="@{/css/img.css}"
+	href="../../css/img.css" />
+<header>
+	<div class="head_class">
+		<p>Migration Pattern Assessment Questionaries</p>
+		<img src="../../images/cg_logo.jpg" />
+	</div>
+</header>
+<style>
+.button:hover {
+	background-color: #0D5555;
+}
+</style>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+	//<![CDATA[
+	function submitMyForm() {
+
+		var yes = "Yes";
+		var no = "No";
+		var x = "";
+		var hostCount = 0;
+		var rewriteCount = 0;
+		var coCount = 0;
+
+		var hostq1 = document.getElementById("hostq1").value;
+		var hostq2 = document.getElementById("hostq2").value;
+		var hostq3 = document.getElementById("hostq3").value;
+		var hostq4 = document.getElementById("hostq4").value;
+		var hostq5 = document.getElementById("hostq5").value;
+		var rewriteq1 = document.getElementById("rewriteq1").value;
+		var rewriteq2 = document.getElementById("rewriteq2").value;
+		var rewriteq3 = document.getElementById("rewriteq3").value;
+		var rewriteq4 = document.getElementById("rewriteq4").value;
+		var rewriteq5 = document.getElementById("rewriteq5").value;
+		var rewriteq6 = document.getElementById("rewriteq6").value;
+		var rewriteq7 = document.getElementById("rewriteq7").value;
+		var rewriteq7 = document.getElementById("rewriteq7").value;
+		var coexistq1 = document.getElementById("coexistq1").value;
+		var coexistq2 = document.getElementById("coexistq2").value;
+		var coexistq3 = document.getElementById("coexistq3").value;
+
+		if (yes == hostq1) {
+			hostCount++;
+			if (yes == hostq2) {
+				hostCount++;
+				if (yes == hostq3) {
+					hostCount++;
+					if (yes == hostq4) {
+						hostCount++;
+						if (yes == hostq5) {
+							hostCount++;
+						}
+					}
+				}
+			}
+		} else if (yes == hostq2) {
+			hostCount++;
+			if (yes == hostq3) {
+				hostCount++;
+				if (yes == hostq4) {
+					hostCount++;
+					if (yes == hostq5) {
+						hostCount++;
+					}
+				}
+			}
+		} else if (yes == hostq3) {
+			hostCount++;
+			if (yes == hostq4) {
+				hostCount++;
+				if (yes == hostq5) {
+					hostCount++;
+				}
+			}
+		}else if (yes == hostq4) {
+			hostCount++;
+			if (yes == hostq5) {
+				hostCount++;
+			}
+		}else if (yes == hostq5) {
+			hostCount++;
+		}
+		
+		if (yes == rewriteq1) {
+			rewriteCount++;
+			if (yes == rewriteq2) {
+				rewriteCount++;
+				if (yes == rewriteq3) {
+					rewriteCount++;
+					if (yes == rewriteq4) {
+						rewriteCount++;
+						if (yes == rewriteq5) {
+							rewriteCount++;
+							if (yes == rewriteq6) {
+								rewriteCount++;
+								if (yes == rewriteq7) {
+									rewriteCount++;
+								}
+							}
+						}
+					}
+				}
+			}
+		}else if (yes == rewriteq2) {
+			rewriteCount++;
+			if (yes == rewriteq3) {
+				rewriteCount++;
+				if (yes == rewriteq4) {
+					rewriteCount++;
+					if (yes == rewriteq5) {
+						rewriteCount++;
+						if (yes == rewriteq6) {
+							rewriteCount++;
+							if (yes == rewriteq7) {
+								rewriteCount++;
+							}
+						}
+					}
+				}
+			}
+		}else if (yes == rewriteq3) {
+			rewriteCount++;
+			if (yes == rewriteq4) {
+				rewriteCount++;
+				if (yes == rewriteq5) {
+					rewriteCount++;
+					if (yes == rewriteq6) {
+						rewriteCount++;
+						if (yes == rewriteq7) {
+							rewriteCount++;
+						}
+					}
+				}
+			}
+		}else if (yes == rewriteq4) {
+			rewriteCount++;
+			if (yes == rewriteq5) {
+				rewriteCount++;
+				if (yes == rewriteq6) {
+					rewriteCount++;
+					if (yes == rewriteq7) {
+						rewriteCount++;
+					}
+				}
+			}
+		}else if (yes == rewriteq5) {
+			rewriteCount++;
+			if (yes == rewriteq6) {
+				rewriteCount++;
+				if (yes == rewriteq7) {
+					rewriteCount++;
+				}
+			}
+		}else if (yes == rewriteq6) {
+			rewriteCount++;
+			if (yes == rewriteq7) {
+				rewriteCount++;
+			}
+		}else if (yes == rewriteq7) {
+			rewriteCount++;
+		}
+
+		if (yes == coexistq1) {
+			coCount++;
+			if (yes == coexistq2) {
+				coCount++;
+				if (yes == coexistq3) {
+					coCount++;
+				}
+			}
+		}else if (yes == coexistq2) {
+			coCount++;
+			if (yes == coexistq3) {
+				coCount++;
+			}
+		}else if (yes == coexistq3) {
+			coCount++;
+		} 
+		
+		if(hostCount > rewriteCount && hostCount > coCount){
+			x = 'Re-hosting / Re-platforming model';
+		}else if(rewriteCount > hostCount && rewriteCount > coCount){
+			x = 'Re-writing model';
+		}else if(coCount > hostCount && coCount > rewriteCount){
+			x = 'Co-existing model';
+		}else {
+			alert("Please provide valid anwers for the following questions..");
+		}	
+		localStorage.setItem("vOneLocalStorage", x);
+	}
+
+	function resetMyForm() {
+		document.getElementById('form1').reset();
+	}
+	
+	// ]]>
+</script>
+<body>
+	<datalist id='listid'>
+		<option label='Yes' value='Yes' />
+		<option label='No' value='No' />
+	</datalist>
+	<form id="form1">
+		<div class="span12">
+			<table id="myTableIdApiEst">
+				<tbody>
+					<tr>
+						<td>Is the application a lightweight application with less
+							features and use cases?
+						</td>
+						<td><input type="text" id="hostq1" name="q1" list='listid' />
+						</td>
+					</tr>
+					<tr>
+						<td>Is the application usage very less (number of hits &lt;
+							100 etc..)?
+						</td>
+						<td><input type="text" id="hostq2" name="q2" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application have no or minimal backend service
+							dependencies?
+						</td>
+						<td><input type="text" id="hostq3" name="q3" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application a standalone application with no
+							upstream/downstream dependencies?
+						</td>
+						<td><input type="text" id="hostq4" name="q4" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application internal application used only by
+							internal employees/staff and not involved in business processes?
+						</td>
+						<td><input type="text" id="hostq5" name="q5" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application a monolith application with multiple
+							components tightly coupled?
+						</td>
+						<td><input type="text" id="rewriteq1" name="q6" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is application changes frequently due to new business
+							requirements?
+						</td>
+						<td><input type="text" id="rewriteq2" name="q7" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application support/maintenance cost is very high?
+						</td>
+						<td><input type="text" id="rewriteq3" name="q8" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application's availability a measure concern in
+							existing environment?
+						</td>
+						<td><input type="text" id="rewriteq4" name="q9" list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application's scalability a measure concern in
+							existing environment?
+						</td>
+						<td><input type="text" id="rewriteq5" name="q10"
+							list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application resource intensive? (data processing
+							and analysis, report generation etc.. )
+						</td>
+						<td><input type="text" id="rewriteq6" name="q11"
+							list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application business critical?
+						</td>
+						<td><input type="text" id="rewriteq7" name="q12"
+							list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is one more core components of exisitng application has
+							contractual obligation<br /> to continue for certain period of
+							time?
+						</td>
+						<td><input type="text" id="coexistq1" name="q13"
+							list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application need to continue using the existing
+							services for various organizational needs? <br />(Ex: Don't want
+							Data migration, or change security infrastructure etc..)
+						</td>
+						<td><input type="text" id="coexistq2" name="q14"
+							list='listid' /></td>
+					</tr>
+					<tr>
+						<td>Is the application need to keep the existing API, <br />Programming
+							language, Source Code, Business Logic of few of the core
+							components?
+						</td>
+						<td><input type="text" id="coexistq3" name="q15"
+							list='listid' /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+	<table>
+		<tr>
+			<td>
+				<form action="#" th:action="@{'v2'}" th:method="get">
+					<input type="hidden" name="_method" value="get" />
+					<button class="button button2" type="submit"
+						onclick="submitMyForm()" value="Submit">Submit</button>
+					<button class="button button3" type="reset" form="form1"
+						onclick="resetMyForm()" value="Reset">Reset</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

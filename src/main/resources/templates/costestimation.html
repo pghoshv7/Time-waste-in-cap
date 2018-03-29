@@ -1,0 +1,259 @@
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+<link rel="stylesheet" th:href="@{/css/form.css}"
+	href="../../css/form.css" />
+<link rel="stylesheet" th:href="@{/css/boot.css}"
+	href="../../css/boot.css" />
+<link rel="stylesheet" th:href="@{/css/img.css}"
+	href="../../css/img.css" />
+<header>
+	<div class="head_class">
+		<p>Migration Pattern Assessment Cost Estimation</p>
+		<img src="../../images/cg_logo.jpg"/>
+	</div>
+</header>
+<style>
+.button:hover {
+	background-color: #0D5555;
+}
+</style>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript">
+function submitMyForm() {
+	var round = Math.round;
+	document.getElementById("useroperids").value = round(parseInt(document
+			.getElementById("lineids").value)/
+			 parseInt(document.getElementById("storypointids").value));
+	var temp = document.getElementById("useroperids").value;
+	
+	document.getElementById("pointperweek2ids").value = parseInt(document
+			.getElementById("pointperweek1ids").value) * parseInt(document.getElementById("numweek2ids").value);
+	
+	document.getElementById("numsprint1ids").value  = round(temp/
+			 parseInt(document.getElementById("pointperweek1ids").value));
+	document.getElementById("numsprint2ids").value  = round(temp/
+			 parseInt(document.getElementById("pointperweek2ids").value));
+	
+	
+	document.getElementById("totalppl1ids").value = parseInt(document
+			.getElementById("pplperspids1").value) + parseInt(document.getElementById("ui1ids").value);
+	document.getElementById("totalppl2ids").value = parseInt(document
+			.getElementById("pplperspids2").value) + parseInt(document.getElementById("ui2ids").value);
+	
+	
+	document.getElementById("totalpplsp1ids").value = parseInt(document
+			.getElementById("sprint1ids").value) * parseInt(document.getElementById("totalppl1ids").value);
+	document.getElementById("totalpplsp2ids").value = parseInt(document
+			.getElementById("sprint2ids").value) * parseInt(document.getElementById("totalppl2ids").value);
+	
+	document.getElementById("teamprsp1ids").value  = round(parseInt(document.getElementById("numsprint1ids").value)/
+			 parseInt(document.getElementById("sprint1ids").value));
+	document.getElementById("teamprsp2ids").value  = round((parseInt(document.getElementById("numsprint2ids").value)/
+			 parseInt(document.getElementById("sprint2ids").value)) * parseInt(document.getElementById("numweek2ids").value));
+	
+	document.getElementById("mnt1ids").value  = round(parseInt(document.getElementById("teamprsp1ids").value)/  parseInt(document.getElementById("sprint1ids").value));
+	document.getElementById("mnt2ids").value  = round(parseInt(document.getElementById("teamprsp2ids").value)/  parseInt(document.getElementById("sprint2ids").value));
+	
+	document.getElementById("totalhr1ids").value  =  parseInt(document
+			.getElementById("totalpplsp1ids").value) * parseInt(document.getElementById("teamprsp1ids").value) * parseInt(document.getElementById("hr1ids").value) ;
+	document.getElementById("totalhr2ids").value  =  parseInt(document
+			.getElementById("totalpplsp2ids").value) * parseInt(document.getElementById("teamprsp2ids").value) * parseInt(document.getElementById("hr2ids").value) ;
+	
+	document.getElementById("bldcst1ids").value  = parseInt(document
+			.getElementById("blnd1ids").value) * parseInt(document.getElementById("totalhr1ids").value);
+	document.getElementById("bldcst2ids").value  = parseInt(document
+			.getElementById("blnd2ids").value) * parseInt(document.getElementById("totalhr2ids").value);
+	
+}
+function resetMyForm() {
+	document.getElementById('form1').reset();
+}
+</script>
+<body>
+	<form id="form1">
+		<div class="span12">
+			<table id="myTableIdApiEst">
+				<tbody>
+					<tr>
+						<td>Lines of Code</td>
+						<td><input type="text" id="lineids" name="lineestimations" /></td>
+						<td># line for 1 User Story point</td>
+						<td><input type="text" id="storypointids"
+							name="storypointestimations" /></td>
+						<td># User Points</td>
+						<td><input type="text" id="useroperids"
+							name="useroperestimations" disabled="true" /></td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr></tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>1 WEEK SPRINT</td>
+						<td></td>
+						<td></td>
+						<td>2 WEEK SPRINT</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td># of points/week</td>
+						<td></td>
+						<td><input type="text" id="pointperweek1ids" name="pointperweekestimations" placeholder="20"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text" id="pointperweek2ids" name="pointperweekestimations" disabled="true"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td># of weeks in a Sprint</td>
+						<td></td>
+						<td><input type="text" id="numweek1ids" name="weekestimations"  placeholder="1"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text" id="numweek2ids" name="weekestimations" placeholder="2"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td># of Sprints</td>
+						<td></td>
+						<td><input type="text" id="numsprint1ids" name="sprintestimations" disabled="true"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text" id="numsprint2ids" name="sprintestimations"  disabled="true"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td><font color="red">No of Sprint Teams (CONFIGURABLE)</font></td>
+						<td></td>
+						<td><input type="text" style="color:red;"  id="sprint1ids" name="teamestimations" placeholder="4"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text" style="color:red;" id="sprint2ids" name="teamestimations" placeholder="4"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>No of people/sprint</td>
+						<td></td>
+						<td><input type="text"   id="pplperspids1" name="teamestimations" placeholder="8"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="pplperspids2" name="teamestimations" placeholder="8"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td># of UI/UX Resource(TBD)</td>
+						<td></td>
+						<td><input type="text"   id="ui1ids" name="teamestimations" placeholder="2"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="ui2ids" name="teamestimations" placeholder="2"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Total # of people for a sprint</td>
+						<td></td>
+						<td><input type="text"   id="totalppl1ids" name="teamestimations" disabled="true"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="totalppl2ids" name="teamestimations" disabled="true"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Total # of people for all sprints</td>
+						<td></td>
+						<td><input type="text"   id="totalpplsp1ids" name="teamestimations" disabled="true"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="totalpplsp2ids" name="teamestimations" disabled="true"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td># of weeks for the Sprint teams</td>
+						<td></td>
+						<td><input type="text"   id="teamprsp1ids" name="teamestimations" disabled="true"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="teamprsp2ids" name="teamestimations" disabled="true"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td># of months</td>
+						<td></td>
+						<td><input type="text"   id="mnt1ids" name="teamestimations" disabled="true"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="mnt2ids" name="teamestimations" disabled="true"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td># of hours per Sprint</td>
+						<td></td>
+						<td><input type="text"   id="hr1ids" name="teamestimations" placeholder="40"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="hr2ids" name="teamestimations" placeholder="40"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Total # of hours</td>
+						<td></td>
+						<td><input type="text"   id="totalhr1ids" name="teamestimations" disabled="true"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="totalhr2ids" name="teamestimations" disabled="true"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Blend Rate</td>
+						<td></td>
+						<td><input type="number"   id="blnd1ids" name="teamestimations" placeholder="$100"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="number"  id="blnd2ids" name="teamestimations" placeholder="$100"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Total Build Cost</td>
+						<td></td>
+						<td><input type="text"   id="bldcst1ids" name="teamestimations" disabled="true"/></td>
+						<td></td>
+						<td></td>
+						<td><input type="text"  id="bldcst2ids" name="teamestimations" disabled="true"/></td>
+					</tr>
+					</tbody>
+			</table>
+		</div>
+	</form>
+	<button class="button button2" type="submit" onclick="submitMyForm()"
+		value="Submit">Submit</button>
+	<button class="button button3" type="reset" form="form1"
+		onclick="resetMyForm()" value="Reset">Reset</button>
+</body>
+</html>

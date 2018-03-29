@@ -1,0 +1,28 @@
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+<link rel="stylesheet" th:href="@{/css/form.css}"
+	href="../../css/form.css" />
+<link rel="stylesheet" th:href="@{/css/boot.css}"
+	href="../../css/boot.css" />
+<style>
+.button:hover {
+	background-color: #0D5555;
+}
+</style>
+<body>
+	<p>
+		<b><font face="verdana" color="green"> Please select one of
+				your choices and based on those please answer the questions marked
+				with <font color="red">*</font>
+		</font></b>
+	</p>
+	<button class="button button2" type="submit"
+		onclick="window.location = 'rehost.html';" value="Submit">Re-host</button>
+	<button class="button button2" type="submit"
+		onclick="window.location = 'replatform.html';" value="Submit">Re-platform</button>
+	<button class="button button2" type="submit"
+		onclick="window.location = 'rewrite.html';" value="Submit">Re-write</button>
+	<button class="button button2" type="submit"
+		onclick="window.location = 'coexist.html';" value="Submit">Co-exist</button>
+</body>
+</html>
